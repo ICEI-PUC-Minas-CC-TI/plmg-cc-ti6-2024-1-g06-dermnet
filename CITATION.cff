@@ -2,30 +2,33 @@ cff-version: 1.0.1
 message: Please cite this software using these metadata.
 title: 
 authors:
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names:
+  - family-names: Valadares de Souza Felix
+    given-names: Daniel
+  - family-names: Silvestre Almeida Conceição
+    given-names: Gustavo
+  - family-names: Lima de Melo
+    given-names: João Vitor
+  - family-names: Valadares Silqueira
+    given-names: Larissa
+  - family-names: Barbosa Brandão
+    given-names: Leonardo
   - name-suffix: Professor
     affiliation: PUC Minas
-    family-names: 
-    given-names: 
+    family-names: Manso Correa Machado
+    given-names: Alexei
   - name-suffix: Professor
     affiliation: PUC Minas
-    family-names: 
-    given-names: 
+    family-names: de Lima Procopio Duarte
+    given-names: Fátima
+  - name-suffix: Professor
+    affiliation: PUC Minas
+    family-names: Cota de Freitas
+    given-names: Henrique
 keywords:
-  - 
-  - 
-repository-code: 
+  - Classificação de Imagens
+  - Hospedagem em Nuvem
+  - Avaliação de Desempenho
+repository-code: https://github.com/ICEI-PUC-Minas-CC-TI/plmg-cc-ti6-2024-1-g06-dermnet
 license: CC-BY-4.0
 version: 1.0.0
-date-released: 2022-07-14
+date-released: 2024-06-21
