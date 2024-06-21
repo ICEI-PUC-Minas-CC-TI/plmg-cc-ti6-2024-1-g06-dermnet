@@ -18,4 +18,5 @@ O projeto "Dermnet" tem como objetivo desenvolver um sistema de aprendizado de m
 
 ## Instruções de utilização
 
-[Assim que a primeira versão do sistema estiver disponível, deverá complementar com as instruções de utilização. Descreva como instalar eventuais dependências e como executar a aplicação.]
+Para o uso correto do Dermnet, primeiro é necessário realizar o download do conjunto de treino disponível em [Kaggle](https://www.kaggle.com/datasets/shubhamgoel27/dermnet). Com os arquivos, deve-se executar o código **gpu.ipynb** a fim de gerar o modelo _model_dermnet.h5_, que por sua vez, deverá ser movido para a pasta **dermnet**. Com o Flask configurado, será possível rodar o sistema de classificação de doenças de pele localmente.
+
