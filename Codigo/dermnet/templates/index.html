@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dermnet</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+
+        h1 {
+            font-family: 'Georgia', Times, serif;
+            margin: 5%;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            -webkit-text-stroke: 0.5px black;
+            letter-spacing: 1.1px;
+            font-size: 4rem;
+            text-align: center;
+            color: white;
+        }
+
+        #resultado{
+            margin-top: 3%;
+            font-weight: bold;
+        }
+        
+        .image-container{
+            text-align: center;
+            align-items: center;
+            vertical-align: center;
+        }
+
+        #uploaded-image {
+            width: 35rem;
+            margin: 0% 15%;
+            height: auto;
+        }
+
+        #upload-instructions {
+            top: 50%;
+            left: 15%;
+            position: absolute;
+            text-align: center;
+            display: block;
+            font-style: italic;
+            color: black;
+        }
+
+        .buttons {
+            display: flex;
+            flex-direction: column;
+            right: 10%;
+            bottom: 35%;
+            position: absolute;
+        }
+
+        .btn{
+            width: 25rem;
+            height: 2.5rem;
+        }
+
+        #classify-button {
+            margin-top: 3%;
+        }
+
+        @media only screen and (max-width: 768px) {
+            body {
+                background: linear-gradient(to bottom right, cadetblue, lightblue);
+                background-attachment: fixed;
+            }
+
+            .container {
+                max-width: 800px;
+                margin: 0 auto;
+                padding: 20px;
+            }
+
+            .content {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .image-container{
+                margin-top: 20%;
+                width: 100%;
+            }
+
+            #upload-instructions {
+                left: 5%;
+                right: 5%;
+                top: 45%;
+            }
+
+            #uploaded-image {
+                width: 100%;
+                margin: 0%;
+            }
+
+            .buttons {
+                bottom: 5%;
+                right: 5%;
+                left: 5%;
+                align-items: center;
+            }
+
+            #image-input, #classify-button{
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body style="background-image: url('/static/back.jpg')">
+    <div class="container">
+        <h1>Dermnet</h1>
+        <div class="content">
+            <div class="row">
+                <div class="col-md-6 col-sm-12">
+                    <div class="image-container">
+                        {% if img_base64 %}
+                            <img id="uploaded-image" src="data:image/jpeg;base64,{{ img_base64 }}" alt="Uploaded Image">
+                        {% else %}
+                            <p id="upload-instructions">Por favor, carregue uma imagem e clique no botão para classificar a doença de pele.</p>
+                            <img id="uploaded-image" src="#" alt="Uploaded Image">
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <div class="buttons">
+                        <form action="" method="post" enctype="multipart/form-data">
+                            <input type="file" class="form-control" id="image-input" accept="image/*" name="imageFile">
+                            <button type="submit" class="btn btn-secondary" id="classify-button">Classificar Doença de Pele</button>
+                        </form>
+                        <p id="resultado">{{ prediction }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+
+    <script>
+        // JavaScript para carregar e exibir a imagem
+        document.getElementById('image-input').addEventListener('change', function(event) {
+            var uploadedImage = document.getElementById('uploaded-image');
+            var uploadInstructions = document.getElementById('upload-instructions');
+
+            var file = event.target.files[0];
+            var reader = new FileReader();
+
+            reader.onload = function(event) {
+                uploadedImage.src = event.target.result;
+                uploadedImage.style.display = 'block';
+                uploadInstructions.style.display = 'none';
+            };
+
+            reader.readAsDataURL(file);
+            var prediction = document.getElementById('resultado');
+            prediction.innerText = '';
+        });
+
+        var uploadedImage = document.getElementById('uploaded-image');
+        if (uploadedImage.getAttribute('src') === '#'){
+            uploadedImage.style.display = 'none';
+        }
+
+    </script>
+</body>
+</html>
